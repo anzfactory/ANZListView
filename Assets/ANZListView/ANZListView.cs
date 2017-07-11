@@ -316,7 +316,6 @@ namespace Xyz.AnzFactory.UI
             public GameObject PopItem()
             {
                 var target = this.item;
-                target.transform.SetParent(null);
                 this.item = null;
                 return target;
             }
