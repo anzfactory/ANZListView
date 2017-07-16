@@ -130,11 +130,11 @@ namespace Xyz.AnzFactory.UI
         #endregion
 
         #region "Public Methods"
-        public void ReloadData()
+        public void ReloadData(System.Action callback)
         {
-            StartCoroutine(this._reloadData());
+            StartCoroutine(this._reloadData(callback));
         }
-        private IEnumerator _reloadData()
+        private IEnumerator _reloadData(System.Action callback)
         {
             yield return new WaitForEndOfFrame();
 
@@ -147,7 +147,16 @@ namespace Xyz.AnzFactory.UI
             foreach (var listItem in this.visibleItemDataList) {
                 this.UpdateListItem(listItem);
             }
+
+            yield return new WaitForEndOfFrame();
+
+            callback();
         }
+
+		public void Position(float position)
+		{
+			this.scrollRect.verticalNormalizedPosition = position;
+		}
         #endregion
 
         #region "Private Methods"

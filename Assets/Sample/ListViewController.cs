@@ -42,7 +42,9 @@ public class ListViewController : MonoBehaviour, ANZListView.IDataSource, ANZLis
         items.Add(new ItemData("icon1", "あいてむ９"));
         items.Add(new ItemData("icon5", "あいてむ１０"));
 
-        this.listView.ReloadData();
+		this.listView.ReloadData(() => {
+			
+		});
     }
     #endregion
 
