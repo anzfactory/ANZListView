@@ -41,7 +41,8 @@ public class ListViewController : MonoBehaviour, ANZListView.IDataSource, ANZLis
         items.Add(new ItemData("icon2", "あいてむ８"));
         items.Add(new ItemData("icon1", "あいてむ９"));
         items.Add(new ItemData("icon5", "あいてむ１０"));
-
+        this.listView.SetBorderColor(Color.black);
+        this.listView.SetBackgroundColor(Color.blue);
 		this.listView.ReloadData(() => {
 			
 		});

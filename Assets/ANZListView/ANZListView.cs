@@ -34,6 +34,8 @@ namespace Xyz.AnzFactory.UI
         private List<ListItemData> itemDataList;
         private List<ListItemData> visibleItemDataList;
         private float prevPositionY;
+        private Image borderBackground;
+        private Image viewportBackground;
         #endregion
 
         #region "Properties"
@@ -130,6 +132,20 @@ namespace Xyz.AnzFactory.UI
         #endregion
 
         #region "Public Methods"
+        public void SetBorderColor(Color color)
+        {
+            if (this.borderBackground == null) {
+                return;
+            }
+            this.borderBackground.color = color;
+        }
+        public void SetBackgroundColor(Color color)
+        {
+            if (this.viewportBackground == null) {
+                return;
+            }
+            this.viewportBackground.color = color;
+        }
         public void ReloadData(System.Action callback)
         {
             StartCoroutine(this._reloadData(callback));
@@ -180,6 +196,8 @@ namespace Xyz.AnzFactory.UI
             contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
 
+            this.borderBackground = this.gameObject.GetComponent<Image>();
+            this.viewportBackground = this.scrollRect.viewport.GetComponent<Image>();
             this.scrollRect.onValueChanged.RemoveListener(this.ChangedScrollPosition);
             this.scrollRect.onValueChanged.AddListener(this.ChangedScrollPosition);
         }
